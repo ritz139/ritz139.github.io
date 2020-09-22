@@ -1,7 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="style.css" rel="stylesheet">
+    <style>
+    p, li{
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 1px;
+}
+html {
+    font-size: 10px; /* px means "pixels": the base font size is now 10 pixels high  */
+    font-family: 'Roboto Slab', serif; /* this should be the rest of the output you got from Google fonts */
+    background-color: #00539F;      
+  }
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+}
+body {
+    width: 600px;
+    margin: 20px auto;
+    background-color: #FF9500;
+    padding: 0 20px 20px 20px;
+    border: 5px solid black;
+  }
+  h1 {
+    margin: 0;
+    padding: 20px 0;    
+    color: #00539F;
+    text-shadow: 3px 3px 1px black;
+    
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 15pc;
+  }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title>My test page</title>
@@ -22,6 +57,36 @@
 
     <p>Read the <a href="https://www.mozilla.org/en-US/about/manifesto/">Mozilla Manifesto</a> to learn even more about the values and principles that guide the pursuit of our mission.</p>
     <button>CHANGE USER</button>
-    <script src="main.js"></script>
+    <script>
+    let myImage = document.querySelector('img');
+
+myImage.onclick = function() {
+    let mySrc = myImage.getAttribute('src');
+    if(mySrc === 'images/1.jpg') {
+      myImage.setAttribute ('src','images/2.png');
+    } else {
+      myImage.setAttribute ('src','images/1.jpg');
+    }
+}
+let myButton = document.querySelector('button');
+let myHeading = document.querySelector('h1');
+
+function setUserName() {
+    let myName = prompt('Please enter your name.');
+    localStorage.setItem('name', myName);
+    myHeading.textContent = 'Mozilla is cool, ' + myName;
+  }
+
+  if(!localStorage.getItem('name')) {
+    setUserName();
+  } else {
+    let storedName = localStorage.getItem('name');
+    myHeading.textContent = 'Mozilla is ' + storedName;
+  }
+
+  myButton.onclick = function() {
+    setUserName();
+  }
+    </script>
   </body>
 </html>
